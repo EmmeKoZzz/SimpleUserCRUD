@@ -8,8 +8,6 @@ import { useTokenVerification } from './hooks/AuthHook';
 export default function App() {
 	const { userId, setUserId } = useContext(UserContext);
 
-	console.log(import.meta.env.MODE);
-
 	function successVerification(newToken: string) {
 		localStorage.token = newToken;
 		setUserId(newToken);
