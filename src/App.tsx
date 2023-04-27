@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect } from 'react';
-import AuthForm from './components/Login/AuthForm';
 import LoguinExpress from './components/Login/login-express';
 import Tasks from './components/TasksComponent/Tasks';
 import { UserContext } from './contexts/autentification';
 import { useTokenVerification } from './hooks/AuthHook';
+
+const localToken = localStorage.getItem('token');
 
 export default function App() {
 	const { userId, setUserId } = useContext(UserContext);
@@ -14,28 +15,13 @@ export default function App() {
 		setUserId(newToken);
 	}
 
-	const { verifyToken, verifing } = useTokenVerification(successVerification);
+	const { verifyToken } = useTokenVerification(successVerification, () =>
+		localStorage.removeItem('token')
+	);
 
 	useEffect(() => {
-		const localToken = localStorage.getItem('token');
 		if (localToken !== null) verifyToken(localToken);
 	}, []);
 
-	let content = userId === null ? <LoguinExpress /> : <Tasks />;
-
-	switch (verifing) {
-		case 'success':
-			content = <Tasks />;
-			break;
-		case 'error':
-			localStorage.removeItem('token');
-			break;
-		case 'loading':
-			content = <div />;
-			break;
-		default:
-			break;
-	}
-
-	return <div className="App">{content}</div>;
+	return userId === null ? <LoguinExpress /> : <Tasks />;
 }

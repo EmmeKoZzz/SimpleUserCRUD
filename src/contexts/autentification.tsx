@@ -13,7 +13,7 @@ type ContextDefault = {
 };
 
 const defaultContext = {
-	userId: null,
+	userId: localStorage.getItem('token'),
 	setUserId: () => {},
 } as ContextDefault;
 
