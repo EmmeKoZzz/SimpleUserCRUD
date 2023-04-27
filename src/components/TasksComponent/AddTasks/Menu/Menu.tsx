@@ -19,7 +19,15 @@ function TaskMenu() {
 	const [Text, SetText] = useContext(AddTaskContext).InputText;
 	const SetMenu = useContext(AddTaskContext).MenuDisplay[1];
 
-	//* ButtonAllower
+	/**
+	 * * requests
+	 */
+
+
+	/**
+	 * * Logic
+	 */
+	// ? ButtonAllower
 	useEffect(() => {
 		const Buttons = [
 			todayButtonRef,
@@ -53,12 +61,17 @@ function TaskMenu() {
 		SetMenu(false);
 	};
 
+	// const {} = useP
+
 	// TODO usar el hook usePostTask aqui y refrescar el query "getTasks"
 	const handleOK = () => {
 		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 		Text === '' ? SetMenu(false) : SetText('');
 	};
 
+	/**
+	 * * Render
+	 */
 	return (
 		<div className="flex justify-between border-t p-1 shadow-lg">
 			<div className="flex">

@@ -10,9 +10,10 @@ const localToken = localStorage.getItem('token');
 export default function App() {
 	const { userId, setUserId } = useContext(UserContext);
 
-	function successVerification(newToken: string) {
+	function successVerification(userData: string) {
+		const { userID, newToken } = JSON.parse(userData);
 		localStorage.token = newToken;
-		setUserId(newToken);
+		setUserId(userID);
 	}
 
 	const { verifyToken } = useTokenVerification(successVerification, () =>
