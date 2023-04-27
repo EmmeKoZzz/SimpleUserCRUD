@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { useContext, useEffect, useRef } from 'react';
 import {
 	calendarIcon,
@@ -6,6 +7,8 @@ import {
 	maximizeIcon,
 	unlockIcon,
 } from '../../../../assets/Icons';
+import { UserContext } from '../../../../contexts/autentification';
+import usePostTask from '../../../../hooks/post-task.hook';
 import { AddTaskContext } from '../context/AddTasksContext';
 import TaskMenuButton from './ButtonTaskList';
 
@@ -16,19 +19,26 @@ function TaskMenu() {
 	const estimationButtonRef = useRef<HTMLButtonElement>(null);
 	const buttonOkRef = useRef<HTMLButtonElement>(null);
 
+	/**
+	 * * states
+	 */
+	const { userId } = useContext(UserContext);
 	const [Text, SetText] = useContext(AddTaskContext).InputText;
-	const SetMenu = useContext(AddTaskContext).MenuDisplay[1];
+	const [showMenu, SetMenu] = useContext(AddTaskContext).MenuDisplay;
 
 	/**
 	 * * requests
 	 */
-
+	const post = usePostTask();
 
 	/**
 	 * * Logic
 	 */
 	// ? ButtonAllower
 	useEffect(() => {
+		if (Text === '') SetMenu(false);
+		else SetMenu(true);
+
 		const Buttons = [
 			todayButtonRef,
 			publicButtonRef,
@@ -54,26 +64,28 @@ function TaskMenu() {
 			buttonOk.innerHTML = 'Add';
 			buttonState(Buttons, false);
 		}
-	}, [Text]);
+	}, [SetMenu, Text]);
 
 	const handleCancel = () => {
 		SetText('');
 		SetMenu(false);
 	};
 
-	// const {} = useP
-
-	// TODO usar el hook usePostTask aqui y refrescar el query "getTasks"
+	// TODO refrescar el query "getTasks"
 	const handleOK = () => {
-		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
-		Text === '' ? SetMenu(false) : SetText('');
+		console.log(Text, userId);
+		post({ task: Text, insert_by: userId });
 	};
 
 	/**
 	 * * Render
 	 */
 	return (
-		<div className="flex justify-between border-t p-1 shadow-lg">
+		<div
+			className={classNames('flex justify-between border-t p-1 shadow-lg', {
+				hidden: !showMenu,
+			})}
+		>
 			<div className="flex">
 				<TaskMenuButton className="mr-8 ">
 					{maximizeIcon}

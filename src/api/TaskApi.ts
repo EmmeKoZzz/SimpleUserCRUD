@@ -21,7 +21,7 @@ export async function getTasks(): Promise<GetTasksResponse> {
 	return data;
 }
 
-export async function postTask(task: { task: string; insert_by: string }) {
+export async function postTask(task: { task: string; insert_by: number }) {
 	const { data } = await ApiTasks.post('/tasks/', task);
 	return data;
 }

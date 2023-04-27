@@ -8,19 +8,19 @@ import {
 } from 'react';
 
 type ContextDefault = {
-	userId: string | null;
-	setUserId: Dispatch<SetStateAction<string | null>>;
+	userId: number;
+	setUserId: Dispatch<SetStateAction<number>>;
 };
 
 const defaultContext = {
-	userId: localStorage.getItem('token'),
+	userId: 0,
 	setUserId: () => {},
 } as ContextDefault;
 
 export const UserContext = createContext(defaultContext);
 
 export default function UserProvider({ children }: { children: ReactNode }) {
-	const [userId, setUserId] = useState<string | null>(null);
+	const [userId, setUserId] = useState<number>();
 	const user = useMemo(() => ({ userId, setUserId }), [userId]);
 
 	return <UserContext.Provider value={user}>{children}</UserContext.Provider>;

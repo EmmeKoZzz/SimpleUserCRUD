@@ -1,18 +1,19 @@
-import { SyntheticEvent, useEffect, useRef, useState } from 'react';
+import { SyntheticEvent, useContext, useEffect, useRef, useState } from 'react';
 
 import { minorSquereIcon, plusSquareIcon } from '../../../assets/Icons';
 import { handleInputWriting } from '../../_utils';
+import { AddTaskContext } from './context/AddTasksContext';
 
 export default function AddTaskInput() {
 	const inputRef = useRef<HTMLInputElement>(null);
 	const spanRef = useRef<HTMLElement>(null);
 
-	const [menuDisplay, setMenuDisplay] = useState(false);
-	const [inputText, setInputText] = useState('');
+	const [menuDisplay, setMenuDisplay] = useContext(AddTaskContext).MenuDisplay;
+	const [inputText, setTask] = useContext(AddTaskContext).InputText;
 
 	const handleAddClick = () => {
 		setMenuDisplay(!menuDisplay);
-		setInputText('');
+		setTask('');
 	};
 
 	//* Input Focus Watcher
@@ -110,7 +111,7 @@ export default function AddTaskInput() {
 				</button>
 				<input
 					type="text"
-					onChange={(e: SyntheticEvent) => handleInputWriting(e, setInputText)}
+					onChange={(e: SyntheticEvent) => handleInputWriting(e, setTask)}
 					onFocus={handleFocusInput}
 					placeholder="Type to add new task"
 					className="font-serif w-full outline-none text-transparent flex selection:bg-blue-300"
