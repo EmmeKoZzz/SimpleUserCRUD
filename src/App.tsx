@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect } from 'react';
 import AuthForm from './components/Login/AuthForm';
+import LoguinExpress from './components/Login/login-express';
 import Tasks from './components/TasksComponent/Tasks';
 import { UserContext } from './contexts/autentification';
 import { useTokenVerification } from './hooks/AuthHook';
@@ -20,7 +21,7 @@ export default function App() {
 		if (localToken !== null) verifyToken(localToken);
 	}, []);
 
-	let content = userId === null ? <AuthForm /> : <Tasks />;
+	let content = userId === null ? <LoguinExpress /> : <Tasks />;
 
 	switch (verifing) {
 		case 'success':
@@ -30,7 +31,7 @@ export default function App() {
 			localStorage.removeItem('token');
 			break;
 		case 'loading':
-			content = <h1>Verifing....</h1>;
+			content = <div />;
 			break;
 		default:
 			break;
