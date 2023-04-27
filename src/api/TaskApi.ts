@@ -1,4 +1,4 @@
-import ApiTasks from './ApiConfig';
+import ApiTasks, { ApiTasksPrivate } from './ApiConfig';
 
 export type Task = {
 	id: number;
@@ -22,6 +22,8 @@ export async function getTasks(): Promise<GetTasksResponse> {
 }
 
 export async function postTask(task: { task: string; insert_by: number }) {
-	const { data } = await ApiTasks.post('/tasks/', task);
+	const { data } = await ApiTasksPrivate.post('/tasks/', task, {
+		withCredentials: true,
+	});
 	return data;
 }

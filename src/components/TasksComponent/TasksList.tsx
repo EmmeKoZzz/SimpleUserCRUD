@@ -1,8 +1,8 @@
 import { AgGridReact } from 'ag-grid-react';
 
+import { useQuery } from '@tanstack/react-query';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
-import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { getTasks } from '../../api/TaskApi';
 
@@ -31,7 +31,7 @@ function TasksList() {
 			/>
 		</div>
 	) : (
-		<h1>Fetching Tasks....</h1>
+		<h1 className="font-sans text-center w-full">Fetching Tasks....</h1>
 	);
 }
 
