@@ -37,9 +37,9 @@ export default function LoguinExpress() {
 	});
 
 	// ? handle request
-	function authSuccess({ token }: TokenResponse) {
+	function authSuccess({ token, pk }: TokenResponse) {
 		if (remember) localStorage.setItem('token', token);
-		setUserId(token);
+		setUserId(pk);
 	}
 	const { authUser } = useAuth(authSuccess);
 

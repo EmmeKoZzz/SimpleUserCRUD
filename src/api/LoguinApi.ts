@@ -6,7 +6,7 @@ export type User = {
 };
 
 export type TokenResponse = {
-	pk: string;
+	pk: number;
 	token: string;
 };
 

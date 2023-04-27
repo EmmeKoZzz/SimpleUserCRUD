@@ -24,5 +24,5 @@ export default function App() {
 		if (localToken !== null) verifyToken(localToken);
 	}, []);
 
-	return userId === null ? <LoguinExpress /> : <Tasks />;
+	return userId === undefined ? <LoguinExpress /> : <Tasks />;
 }

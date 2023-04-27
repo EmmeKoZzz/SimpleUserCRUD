@@ -73,7 +73,6 @@ function TaskMenu() {
 
 	// TODO refrescar el query "getTasks"
 	const handleOK = () => {
-		console.log(Text, userId);
 		post({ task: Text, insert_by: userId });
 	};
 
