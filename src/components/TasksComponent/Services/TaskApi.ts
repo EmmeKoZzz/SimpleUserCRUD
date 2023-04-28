@@ -22,7 +22,7 @@ export async function getTasks(): Promise<GetTasksResponse> {
 	return data;
 }
 
-export async function postTask(task: { task: string; id: number }) {
+export async function postTask(task: { task: string; insert_by: number }) {
 	const dataForm: any = new FormData();
 	const tokenData: any = jwt(localStorage.token);
 	dataForm.append('insert_by', tokenData.user_id);
