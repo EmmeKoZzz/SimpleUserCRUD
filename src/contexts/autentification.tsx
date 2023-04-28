@@ -13,7 +13,7 @@ type ContextDefault = {
 };
 
 const defaultContext = {
-	userId: 0,
+	userId: -1,
 	setUserId: () => {},
 } as ContextDefault;
 
