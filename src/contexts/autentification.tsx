@@ -20,7 +20,7 @@ const defaultContext = {
 export const UserContext = createContext(defaultContext);
 
 export default function UserProvider({ children }: { children: ReactNode }) {
-	const [userId, setUserId] = useState<number>();
+	const [userId, setUserId] = useState<number>(defaultContext.userId);
 	const user = useMemo(() => ({ userId, setUserId }), [userId]);
 
 	return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
