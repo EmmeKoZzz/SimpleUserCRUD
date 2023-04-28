@@ -24,7 +24,6 @@ export default function App() {
 	});
 
 	useEffect(() => {
-		console.log(userId);
 		if (localToken !== null) verifyToken(localToken);
 		else if (userId === -1) setContent(<LoguinExpress />);
 		else setContent(<Tasks />);
