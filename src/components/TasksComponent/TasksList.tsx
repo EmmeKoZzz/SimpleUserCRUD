@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { useMemo } from 'react';
-import { getTasks } from '../../api/TaskApi';
+import { getTasks } from './Services/task.service';
 
 function TasksList() {
 	const columns = useMemo(
