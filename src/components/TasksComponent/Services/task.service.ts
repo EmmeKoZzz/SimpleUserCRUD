@@ -10,7 +10,7 @@ export type Task = {
 	updated_at: string;
 };
 
-type GetTasksResponse = {
+export type GetTasksResponse = {
 	count: number;
 	next: string;
 	previous: string;
