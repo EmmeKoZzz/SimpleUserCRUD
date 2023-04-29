@@ -9,6 +9,8 @@ import {
 } from '../../../../assets/Icons';
 import { UserContext } from '../../../../contexts/autentification';
 import usePostTask from '../../../../hooks/post-task.hook';
+import { TasksContext } from '../../Context/tasks.context';
+import { Task } from '../../Services/task.service';
 import { AddTaskContext } from '../context/AddTasksContext';
 import TaskMenuButton from './ButtonTaskList';
 
@@ -25,11 +27,23 @@ function TaskMenu() {
 	const { userId } = useContext(UserContext);
 	const [Text, SetText] = useContext(AddTaskContext).InputText;
 	const [showMenu, SetMenu] = useContext(AddTaskContext).MenuDisplay;
+	const { tasks, setTasks } = useContext(TasksContext);
+
+	// console.log(tasks);
 
 	/**
 	 * * requests
 	 */
-	const post = usePostTask();
+	const post = usePostTask({
+		onSuccess() {
+			console.log(tasks.slice(1));
+			setTasks((value) => value.slice(1));
+		},
+		onError() {
+			console.log(tasks.slice(1));
+			setTasks((value) => value.slice(1));
+		},
+	});
 
 	/**
 	 * * Logic
@@ -73,6 +87,16 @@ function TaskMenu() {
 
 	// TODO refrescar el query "getTasks"
 	const handleOK = () => {
+		const date = new Date().toDateString();
+		const task: Task = {
+			created_at: date,
+			id: userId,
+			insert_by: userId,
+			task: Text,
+			updated_at: date,
+			user_name: 'test',
+		};
+		setTasks((value) => [task].concat(value));
 		post({ task: Text, insert_by: userId });
 	};
 
