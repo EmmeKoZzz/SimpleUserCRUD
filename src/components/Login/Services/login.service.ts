@@ -1,4 +1,4 @@
-import ApiTasks from './ApiConfig';
+import ApiTasks from '../../../api/ApiConfig';
 
 export type User = {
 	username: string;
