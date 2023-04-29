@@ -29,15 +29,12 @@ function TaskMenu() {
 	const [showMenu, SetMenu] = useContext(AddTaskContext).MenuDisplay;
 	const { tasks, setTasks } = useContext(TasksContext);
 
-	// console.log(tasks);
-
 	/**
 	 * * requests
 	 */
 	const post = usePostTask({
 		onSuccess() {},
 		onError() {
-			console.log(tasks.slice(1));
 			setTasks((value) => value.slice(1));
 		},
 	});

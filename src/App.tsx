@@ -14,6 +14,7 @@ export default function App() {
 	function successVerification(userData: string) {
 		const { userID, newToken } = JSON.parse(userData);
 		localStorage.token = newToken;
+		sessionStorage.token = newToken;
 		setUserId(userID);
 		setContent(<Tasks />);
 	}
