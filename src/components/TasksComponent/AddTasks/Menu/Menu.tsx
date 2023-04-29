@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useContext, useEffect, useRef } from 'react';
+import { useCallback, useContext, useEffect, useRef } from 'react';
 import {
 	calendarIcon,
 	discIcon,
@@ -35,10 +35,7 @@ function TaskMenu() {
 	 * * requests
 	 */
 	const post = usePostTask({
-		onSuccess() {
-			console.log(tasks.slice(1));
-			setTasks((value) => value.slice(1));
-		},
+		onSuccess() {},
 		onError() {
 			console.log(tasks.slice(1));
 			setTasks((value) => value.slice(1));
@@ -86,11 +83,11 @@ function TaskMenu() {
 	};
 
 	// TODO refrescar el query "getTasks"
-	const handleOK = () => {
+	const handleOK = useCallback(() => {
 		const date = new Date().toDateString();
 		const task: Task = {
 			created_at: date,
-			id: userId,
+			id: tasks[0].id + 1,
 			insert_by: userId,
 			task: Text,
 			updated_at: date,
@@ -98,7 +95,7 @@ function TaskMenu() {
 		};
 		setTasks((value) => [task].concat(value));
 		post({ task: Text, insert_by: userId });
-	};
+	}, [Text, post, setTasks, tasks, userId]);
 
 	/**
 	 * * Render
