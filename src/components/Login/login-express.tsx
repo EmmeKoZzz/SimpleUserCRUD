@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { InferType, object, string } from 'yup';
 import { TokenResponse } from './Services/login.service';
 import { UserContext } from '../../contexts/autentification';
-import { useAuth } from '../../hooks/AuthHook';
+import { useAuth } from '../../hooks/auth.hook';
 import TextInput, { InputTypes } from './form-inputs/text-input';
 
 const validationSchema = object().shape({

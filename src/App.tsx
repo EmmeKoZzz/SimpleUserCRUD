@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import LoguinExpress from './components/Login/login-express';
 import Tasks from './components/TasksComponent/Tasks';
 import { UserContext } from './contexts/autentification';
-import { useTokenVerification } from './hooks/AuthHook';
+import { useTokenVerification } from './hooks/auth.hook';
 
 const localToken = localStorage.getItem('token');
 

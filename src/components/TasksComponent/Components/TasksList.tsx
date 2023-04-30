@@ -4,8 +4,9 @@ import { useQuery } from '@tanstack/react-query';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { useContext, useMemo } from 'react';
-import { TasksContext } from './Context/tasks.context';
-import { getTasks } from './Services/task.service';
+import { TasksContext } from '../Context/tasks.context';
+import getTasks from '../Services/get-tasks.service';
+import Task from '../Models/task.model';
 
 function TasksList() {
 	const columns = useMemo(
@@ -15,6 +16,7 @@ function TasksList() {
 			{ field: 'user_name', headerName: 'User' },
 			{ field: 'created_at', headerName: 'Created' },
 			{ field: 'updated_at', headerName: 'Last Update' },
+			{ field: 'actions', headerName: 'Actions' },
 		],
 		[]
 	);
@@ -23,7 +25,13 @@ function TasksList() {
 
 	const Tasks = useQuery(['getTasks'], getTasks, {
 		onSuccess(data) {
-			setTasks(data.results);
+			const tasksFields = data.results.map((task: Task) => {
+				function edit() {}
+				function del() {}
+				return { ...task, actions: { edit, del } };
+			});
+
+			setTasks(tasksFields);
 		},
 	});
 

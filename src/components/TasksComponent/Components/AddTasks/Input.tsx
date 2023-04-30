@@ -1,7 +1,7 @@
 import { SyntheticEvent, useContext, useEffect, useRef } from 'react';
 
-import { minorSquereIcon, plusSquareIcon } from '../../../assets/Icons';
-import { handleInputWriting } from '../../_utils';
+import { minorSquereIcon, plusSquareIcon } from '../../../../assets/Icons';
+import { handleInputWriting } from '../../../_utils';
 import { AddTaskContext } from './context/AddTasksContext';
 
 export default function AddTaskInput() {
@@ -124,7 +124,8 @@ export default function AddTaskInput() {
 				/>
 			</div>
 			<div>
-				<img src="/img/team-3.jpg" alt="" />
+				{/* TODO add image */}
+				{/* <img src="/img/team-3.jpg" alt="" /> */}
 			</div>
 		</div>
 	);

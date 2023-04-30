@@ -6,11 +6,11 @@ import {
 	loaderIcon,
 	maximizeIcon,
 	unlockIcon,
-} from '../../../../assets/Icons';
-import { UserContext } from '../../../../contexts/autentification';
-import usePostTask from '../../../../hooks/post-task.hook';
-import { TasksContext } from '../../Context/tasks.context';
-import { Task } from '../../Services/task.service';
+} from '../../../../../assets/Icons';
+import { UserContext } from '../../../../../contexts/autentification';
+import usePostTask from '../../../../../hooks/post-task.hook';
+import { TasksContext } from '../../../Context/tasks.context';
+import { Task } from '../../../Services/get-tasks.service';
 import { AddTaskContext } from '../context/AddTasksContext';
 import TaskMenuButton from './ButtonTaskList';
 

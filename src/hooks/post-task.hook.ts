@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { postTask } from '../components/TasksComponent/Services/task.service';
+import postTask from '../components/TasksComponent/Services/post-task.service';
 
 export default function usePostTask({
 	onError,
