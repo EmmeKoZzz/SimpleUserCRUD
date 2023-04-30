@@ -8,6 +8,8 @@ export default async function postTask({ task }: { task: string }) {
 	dataForm.append('insert_by', tokenData.user_id);
 	dataForm.append('task', task);
 
-	const { data } = await ApiTasksPrivate.post('/tasks/', dataForm);
+	const { data } = await ApiTasksPrivate.post('/tasks/', dataForm, {
+		headers: { Authorization: `Bearer ${sessionStorage.token}` },
+	});
 	return data;
 }

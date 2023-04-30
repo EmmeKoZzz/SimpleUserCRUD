@@ -85,7 +85,7 @@ function TaskMenu() {
 		const date = new Date().toISOString();
 		const task: Task = {
 			created_at: date,
-			id: tasks[0].id + 1,
+			id: tasks.length > 0 ? tasks[0].id + 1 : 1,
 			insert_by: userId,
 			task: Text,
 			updated_at: date,
