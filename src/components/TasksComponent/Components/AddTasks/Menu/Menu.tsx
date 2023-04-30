@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { useCallback, useContext, useEffect, useRef } from 'react';
+import jwt from 'jwt-decode';
 import {
 	calendarIcon,
 	discIcon,
@@ -10,7 +11,7 @@ import {
 import { UserContext } from '../../../../../contexts/autentification';
 import usePostTask from '../../../../../hooks/post-task.hook';
 import { TasksContext } from '../../../Context/tasks.context';
-import { Task } from '../../../Services/get-tasks.service';
+import Task from '../../../Models/task.model';
 import { AddTaskContext } from '../context/AddTasksContext';
 import TaskMenuButton from './ButtonTaskList';
 
@@ -88,10 +89,10 @@ function TaskMenu() {
 			insert_by: userId,
 			task: Text,
 			updated_at: date,
-			user_name: 'test',
+			user_name: (jwt(sessionStorage.token) as { username: string }).username,
 		};
 		setTasks((value) => [task].concat(value));
-		post({ task: Text, insert_by: userId });
+		post({ task: Text });
 	}, [Text, post, setTasks, tasks, userId]);
 
 	/**
