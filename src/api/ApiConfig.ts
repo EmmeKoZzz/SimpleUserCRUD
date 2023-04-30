@@ -8,8 +8,11 @@ const ApiTasks = axios.create({
 
 export const ApiTasksPrivate = axios.create({
 	baseURL: BASE_URL,
-	headers: { 'Content-Type': 'application/json' },
-	withCredentials: true,
+	headers: {
+		Authorization: `Bearer ${sessionStorage.token}`,
+		Accept: 'application/json',
+		'Content-Type': 'application/json',
+	},
 });
 
 export default ApiTasks;
