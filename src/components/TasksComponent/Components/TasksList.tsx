@@ -1,15 +1,15 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { AgGridReact } from 'ag-grid-react';
-import jwt from 'jwt-decode';
-import { useContext, useMemo } from 'react';
+import { useCallback, useContext, useMemo } from 'react';
 import { TasksContext } from '../Context/tasks.context';
+import deleteTask from '../Services/delete-task.service';
+import editTask from '../Services/edit-task.service';
 import getTasks from '../Services/get-tasks.service';
 
-function ActionButton(row: any) {
-	console.log(row);
-
+function ActionButton({ data: { id: taskId, insert_by: userId } }: any) {
+	const { setTasks } = useContext(TasksContext);
 	const { container, buttons, edit, del } = useMemo(() => {
 		return {
 			container:
@@ -21,13 +21,33 @@ function ActionButton(row: any) {
 		};
 	}, []);
 
+	// TODO create edit funcionality
+	const { mutate: editfn } = useMutation(editTask);
+	const handleEdit = useCallback(() => {}, []);
+
+	const { mutate: delfn } = useMutation(deleteTask, {
+		onError() {},
+	});
+	const handleDelete = useCallback(() => {
+		delfn(taskId);
+		setTasks((tasks) => tasks.filter((task) => task.id !== taskId));
+	}, [delfn, setTasks, taskId]);
+
 	return (
 		<div className="w-full h-full flex justify-center">
 			<div className={container}>
-				<button className={`${buttons} ${edit}`} type="button">
+				<button
+					className={`${buttons} ${edit}`}
+					type="button"
+					onClick={handleEdit}
+				>
 					edit
 				</button>
-				<button className={`${buttons} ${del}`} type="button">
+				<button
+					className={`${buttons} ${del}`}
+					type="button"
+					onClick={handleDelete}
+				>
 					delete
 				</button>
 			</div>
@@ -51,9 +71,6 @@ export default function TasksList() {
 		],
 		[]
 	);
-
-	/* 	const { mutate: edit } = useMutation(editTask);
-	const { mutate: del } = useMutation(deleteTask); */
 
 	const { tasks, setTasks } = useContext(TasksContext);
 
