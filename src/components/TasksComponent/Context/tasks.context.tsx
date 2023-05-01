@@ -6,7 +6,7 @@ import {
 	useMemo,
 	useState,
 } from 'react';
-import { Task } from '../Services/get-tasks.service';
+import Task from '../Models/task.model';
 
 type ContextDefault = {
 	tasks: Task[];
