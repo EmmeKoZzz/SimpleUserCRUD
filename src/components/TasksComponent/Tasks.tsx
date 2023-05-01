@@ -6,7 +6,6 @@ export default function Tasks() {
 	return (
 		<TasksProvider>
 			<AddTask />
-
 			<TasksList />
 		</TasksProvider>
 	);

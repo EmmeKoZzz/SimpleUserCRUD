@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { AgGridReact } from 'ag-grid-react';
@@ -10,6 +10,7 @@ import getTasks from '../Services/get-tasks.service';
 
 function ActionButton({ data: { id: taskId, insert_by: userId } }: any) {
 	const { setTasks } = useContext(TasksContext);
+	const queryClient = useQueryClient();
 	const { container, buttons, edit, del } = useMemo(() => {
 		return {
 			container:
@@ -26,7 +27,9 @@ function ActionButton({ data: { id: taskId, insert_by: userId } }: any) {
 	const handleEdit = useCallback(() => {}, []);
 
 	const { mutate: delfn } = useMutation(deleteTask, {
-		onError() {},
+		onError() {
+			queryClient.invalidateQueries(['getTasks']);
+		},
 	});
 	const handleDelete = useCallback(() => {
 		delfn(taskId);
