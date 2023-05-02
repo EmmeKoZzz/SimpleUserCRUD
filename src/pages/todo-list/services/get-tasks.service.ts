@@ -1,7 +1,7 @@
-import ApiTasks from '../../../api/ApiConfig';
-import GetTasksResponse from '../Models/get-task-response.model';
+import { tasksApi } from '../../../api';
+import { GetTasksResponse } from '../models';
 
 export default async function getTasks(): Promise<GetTasksResponse> {
-	const { data } = await ApiTasks.get('/tasks/');
+	const { data } = await tasksApi.get('/tasks/');
 	return data;
 }

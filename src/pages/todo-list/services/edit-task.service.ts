@@ -1,11 +1,11 @@
 import jwt from 'jwt-decode';
-import { ApiTasksPrivate } from '../../../api/ApiConfig';
-import INewTask from '../Models/new-task.model';
+import { tasksPrivateApi } from '../../../api';
+import { INewTask } from '../models';
 
 export default async ({ taskId, newTask }: INewTask) => {
 	const userid = (jwt(sessionStorage.token) as { user_id: string }).user_id;
 	return (
-		await ApiTasksPrivate.patch(`/tasks/${taskId}`, {
+		await tasksPrivateApi.patch(`/tasks/${taskId}`, {
 			task: newTask,
 			insert_by: userid,
 		})

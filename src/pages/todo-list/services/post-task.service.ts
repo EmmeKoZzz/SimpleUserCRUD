@@ -1,5 +1,5 @@
 import jwt from 'jwt-decode';
-import { ApiTasksPrivate } from '../../../api/ApiConfig';
+import { tasksPrivateApi } from '../../../api';
 
 export default async ({ task }: { task: string }) => {
 	const dataForm = new FormData();
@@ -8,8 +8,6 @@ export default async ({ task }: { task: string }) => {
 	dataForm.append('insert_by', tokenData.user_id);
 	dataForm.append('task', task);
 
-	const { data } = await ApiTasksPrivate.post('/tasks/', dataForm, {
-		headers: { Authorization: `Bearer ${sessionStorage.token}` },
-	});
+	const { data } = await tasksPrivateApi.post('/tasks/', dataForm);
 	return data;
 };

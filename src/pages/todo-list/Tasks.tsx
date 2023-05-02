@@ -1,6 +1,6 @@
-import AddTask from './Components/AddTasks/AddTask';
-import TasksProvider from './Context/tasks.context';
-import TasksList from './Components/TasksList';
+import AddTask from './components/AddTasks/AddTask';
+import TasksList from './components/TasksList';
+import TasksProvider from './context/tasks.context';
 
 export default function Tasks() {
 	return (

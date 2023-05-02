@@ -1,3 +1,5 @@
+import { tasksApi } from '../api';
+
 export default async (token: string) => {
-	await ApiTasks.post('/api-token-verify/', { token });
+	await tasksApi.post('/api-token-verify/', { token });
 };

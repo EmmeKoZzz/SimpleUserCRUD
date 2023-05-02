@@ -1,11 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import {
-	authLogin,
-	refreshUser,
-	TokenResponse,
-	verifyUser,
-} from '../components/Login/Services/login.service';
+import { TokenResponse } from '../models';
+import { authLogin } from '../pages/login/Services';
 
 export default (
 	success?: (data: TokenResponse) => void,

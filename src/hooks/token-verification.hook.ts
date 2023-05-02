@@ -1,3 +1,6 @@
+import { useMutation } from '@tanstack/react-query';
+import { refreshUser, verifyUser } from '../services';
+
 export default (success?: (data: string) => void, failure?: () => void) => {
 	const verification = async (token: string) => {
 		await verifyUser(token);

@@ -1,7 +1,9 @@
-import ApiTasks from '../../../api/ApiConfig';
+import { tasksApi } from '../../../api';
+import { TokenResponse } from '../../../models';
+import { User } from '../models';
 
 export default async ({ username, password }: User): Promise<TokenResponse> => {
-	const { data } = await ApiTasks.post('/api-token-auth/', {
+	const { data } = await tasksApi.post('/api-token-auth/', {
 		username,
 		password,
 	});

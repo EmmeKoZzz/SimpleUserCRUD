@@ -15,4 +15,6 @@ export default (api: AxiosInstance) => {
 
 	api.interceptors.request.use();
 	api.interceptors.response.use();
+
+	return api;
 };

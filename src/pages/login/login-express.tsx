@@ -4,10 +4,10 @@ import classNames from 'classnames';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { InferType, object, string } from 'yup';
-import { TokenResponse } from './Services/login.service';
-import { UserContext } from '../../contexts/auth.context';
-import { useAuth } from '../../hooks/auth.hook';
-import TextInput, { InputTypes } from './form-inputs/text-input';
+import TextInput from '../../components/form-inputs/text-input';
+import { UserContext } from '../../contexts';
+import { useAuth } from '../../hooks';
+import { InputTypes, TokenResponse } from '../../models';
 
 const validationSchema = object().shape({
 	username: string().required('username required'),

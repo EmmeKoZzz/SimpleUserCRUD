@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import { useCallback, useContext, useEffect, useRef } from 'react';
 import jwt from 'jwt-decode';
+import { useCallback, useContext, useEffect, useRef } from 'react';
 import {
 	calendarIcon,
 	discIcon,
@@ -8,11 +8,11 @@ import {
 	maximizeIcon,
 	unlockIcon,
 } from '../../../../../assets/Icons';
-import { UserContext } from '../../../../../contexts/auth.context';
-import usePostTask from '../../../../../hooks/post-task.hook';
-import { TasksContext } from '../../../Context/tasks.context';
-import Task from '../../../Models/task.model';
-import { AddTaskContext } from '../context/add-tasks.context';
+import { UserContext } from '../../../../../contexts';
+import { usePostTask } from '../../../../../hooks';
+import { TasksContext } from '../../../context';
+import { Task } from '../../../models';
+import { AddTaskContext } from '../context';
 import TaskMenuButton from './ButtonTaskList';
 
 function TaskMenu() {
