@@ -1,8 +1,8 @@
 import { ApiTasksPrivate } from '../../../api/ApiConfig';
 
-export default async function deleteTask(id: string) {
+export default async (id: string) => {
 	const { status } = await ApiTasksPrivate.delete(`/tasks/${id}`, {
 		headers: { Authorization: `Bearer ${sessionStorage.token}` },
 	});
 	return status;
-}
+};

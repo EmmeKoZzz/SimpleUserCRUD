@@ -2,7 +2,7 @@ import { SyntheticEvent, useContext, useEffect, useRef } from 'react';
 
 import { minorSquereIcon, plusSquareIcon } from '../../../../assets/Icons';
 import { handleInputWriting } from '../../../_utils';
-import { AddTaskContext } from './context/AddTasksContext';
+import { AddTaskContext } from './context/add-tasks.context';
 
 export default function AddTaskInput() {
 	const inputRef = useRef<HTMLInputElement>(null);

@@ -8,11 +8,11 @@ import {
 	maximizeIcon,
 	unlockIcon,
 } from '../../../../../assets/Icons';
-import { UserContext } from '../../../../../contexts/autentification';
+import { UserContext } from '../../../../../contexts/auth.context';
 import usePostTask from '../../../../../hooks/post-task.hook';
 import { TasksContext } from '../../../Context/tasks.context';
 import Task from '../../../Models/task.model';
-import { AddTaskContext } from '../context/AddTasksContext';
+import { AddTaskContext } from '../context/add-tasks.context';
 import TaskMenuButton from './ButtonTaskList';
 
 function TaskMenu() {

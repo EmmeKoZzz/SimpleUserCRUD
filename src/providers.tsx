@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
-import UserProvider from './contexts/autentification';
+import UserProvider from './contexts/auth.context';
 
 const queryClient = new QueryClient();
 

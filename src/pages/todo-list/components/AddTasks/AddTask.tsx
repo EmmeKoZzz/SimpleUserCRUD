@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import AddTaskContextProvider, {
 	AddTaskContext,
-} from './context/AddTasksContext';
+} from './context/add-tasks.context';
 import AddTaskInput from './Input';
 import TaskMenu from './Menu/Menu';
 

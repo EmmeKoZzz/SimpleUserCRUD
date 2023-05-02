@@ -1,7 +1,7 @@
 import jwt from 'jwt-decode';
 import { ApiTasksPrivate } from '../../../api/ApiConfig';
 
-export default async function postTask({ task }: { task: string }) {
+export default async ({ task }: { task: string }) => {
 	const dataForm = new FormData();
 	const tokenData = jwt(sessionStorage.token) as { user_id: string };
 
@@ -12,4 +12,4 @@ export default async function postTask({ task }: { task: string }) {
 		headers: { Authorization: `Bearer ${sessionStorage.token}` },
 	});
 	return data;
-}
+};

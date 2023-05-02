@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
+
 import classNames from 'classnames';
-import IInput from './input';
+import { IInput } from '../../models';
 
 export default function CheckboxInput({
 	name,

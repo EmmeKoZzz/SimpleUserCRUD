@@ -1,14 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-props-no-spreading */
-import classNames from 'classnames';
-import IInput from './input';
 
-export enum InputTypes {
-	email = 'email',
-	text = 'text',
-	password = 'password',
-	phone = 'tel',
-}
+import classNames from 'classnames';
+import { IInput, InputTypes } from '../../models';
 
 interface ITextInput extends IInput {
 	type: InputTypes;
