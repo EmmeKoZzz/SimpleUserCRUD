@@ -1,4 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { AgGridReact } from 'ag-grid-react';
 import { useContext, useMemo } from 'react';
 import { TasksContext } from '../context';
