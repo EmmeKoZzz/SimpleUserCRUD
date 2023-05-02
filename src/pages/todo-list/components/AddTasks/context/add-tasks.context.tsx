@@ -1,18 +1,5 @@
-import {
-	createContext,
-	Dispatch,
-	ReactNode,
-	SetStateAction,
-	useMemo,
-	useState,
-} from 'react';
-
-export type State<T> = [T, Dispatch<SetStateAction<T>>];
-
-export type Default = {
-	MenuDisplay: State<boolean>;
-	InputText: State<string>;
-};
+import { createContext, ReactNode, useState, useMemo } from 'react';
+import { State } from '../../../../../models';
 
 const defaultContext = {
 	MenuDisplay: [true, () => {}] as State<boolean>,

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-props-no-spreading */
-
 import classNames from 'classnames';
 import { IInput, InputTypes } from '../../models';
 

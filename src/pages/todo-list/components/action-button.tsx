@@ -1,14 +1,34 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useCallback, useContext, useMemo } from 'react';
+import { useCallback, useContext, useMemo, useRef, useState } from 'react';
 import { deleteIcon, editIcon } from '../../../assets';
 import { TasksContext } from '../context';
-import { deleteTask, editTask } from '../services';
+import { deleteTask } from '../services';
+import EditModal from './edit-modal';
 
 export default function ActionButton({
-	data: { id: taskId, insert_by: userId },
+	data: { id: taskId, insert_by: userId, task },
 }: any) {
+	const showModal = useState(true);
 	const { setTasks } = useContext(TasksContext);
+	const editRef = useRef(document.createElement('button'));
+
+	/**
+	 * * Handle DELETE task
+	 */
 	const queryClient = useQueryClient();
+	const { mutate: delfn } = useMutation(deleteTask, {
+		onError() {
+			queryClient.invalidateQueries(['getTasks']);
+		},
+	});
+	const handleDelete = useCallback(() => {
+		delfn(taskId);
+		setTasks((tasks) => tasks.filter((Task) => Task.id !== taskId));
+	}, [delfn, setTasks, taskId]);
+
+	/**
+	 * * Styles
+	 */
 	const { container, buttons, edit, del } = useMemo(() => {
 		return {
 			container:
@@ -19,28 +39,19 @@ export default function ActionButton({
 		};
 	}, []);
 
-	// TODO create edit funcionality
-	const { mutate: editfn } = useMutation(editTask);
-	const handleEdit = useCallback(() => {}, []);
-
-	const { mutate: delfn } = useMutation(deleteTask, {
-		onError() {
-			queryClient.invalidateQueries(['getTasks']);
-		},
-	});
-	const handleDelete = useCallback(() => {
-		delfn(taskId);
-		setTasks((tasks) => tasks.filter((task) => task.id !== taskId));
-	}, [delfn, setTasks, taskId]);
-
+	/**
+	 * * Render
+	 */
 	return (
 		<div className="w-full h-full flex justify-center">
 			<div className={container}>
-				<button
-					className={`${buttons} ${edit}`}
-					type="button"
-					onClick={handleEdit}
-				>
+				<button className={`${buttons} ${edit}`} type="button" ref={editRef}>
+					<EditModal
+						handler={editRef.current}
+						oldTask={task}
+						userId={userId}
+						taskId={taskId}
+					/>
 					{editIcon}
 				</button>
 				<button
