@@ -1,18 +1,8 @@
 import axios from 'axios';
+import { doPrivateApi } from '../interceptors';
 
-const BASE_URL = 'https://luisvidal87.pythonanywhere.com';
+const baseURL = 'https://luisvidal87.pythonanywhere.com';
 
-const ApiTasks = axios.create({
-	baseURL: BASE_URL,
-});
+export const tasksApi = axios.create({ baseURL });
 
-export const ApiTasksPrivate = axios.create({
-	baseURL: BASE_URL,
-	headers: {
-		Authorization: `Bearer ${sessionStorage.token}`,
-		Accept: 'application/json',
-		'Content-Type': 'application/json',
-	},
-});
-
-export default ApiTasks;
+export const tasksPrivateApi = doPrivateApi(axios.create({ baseURL }));
