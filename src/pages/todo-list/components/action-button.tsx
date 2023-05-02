@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useCallback, useContext, useMemo } from 'react';
+import { deleteIcon, editIcon } from '../../../assets';
 import { TasksContext } from '../context';
 import { deleteTask, editTask } from '../services';
 
@@ -11,11 +12,10 @@ export default function ActionButton({
 	const { container, buttons, edit, del } = useMemo(() => {
 		return {
 			container:
-				'!transition-all flex rounded-md text-base place-self-center overflow-hidden',
-			buttons:
-				'!transition-all bg-white hover:text-white p-1 border border-gray-500',
-			edit: 'rounded-l-md border-r-0 hover:bg-light-blue-500 hover:border-light-blue-500',
-			del: 'rounded-r-md hover:bg-red-300 hover:border-red-300',
+				'!transition-all flextext-base place-self-center flex w-full h-full',
+			buttons: 'w-1/2 h-full border flex justify-center',
+			edit: 'rounded-l-md border-r-0 bg-light-blue-600 border-light-blue-600 hover:border-light-blue-200 hover:bg-light-blue-200',
+			del: 'rounded-r-md bg-red-600 border-red-600 hover:bg-red-200 hover:border-red-200',
 		};
 	}, []);
 
@@ -41,14 +41,14 @@ export default function ActionButton({
 					type="button"
 					onClick={handleEdit}
 				>
-					edit
+					{editIcon}
 				</button>
 				<button
 					className={`${buttons} ${del}`}
 					type="button"
 					onClick={handleDelete}
 				>
-					delete
+					{deleteIcon}
 				</button>
 			</div>
 		</div>

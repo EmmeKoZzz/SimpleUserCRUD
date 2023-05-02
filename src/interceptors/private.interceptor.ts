@@ -15,7 +15,7 @@ export default (api: AxiosInstance) => {
 		return newConfig;
 	}
 
-	const onResError = async ({ response, config }: AxiosError) => {
+	async function onResError({ response, config }: AxiosError) {
 		if (response?.status === 401 && config) {
 			const { token: newToken } = await refreshUser(sessionStorage.token);
 			sessionStorage.setItem('token', newToken);
@@ -26,7 +26,7 @@ export default (api: AxiosInstance) => {
 
 			axios(newConfig);
 		}
-	};
+	}
 
 	api.interceptors.request.use(onReq, (err) => Promise.reject(err));
 	api.interceptors.response.use((res) => res, onResError);
