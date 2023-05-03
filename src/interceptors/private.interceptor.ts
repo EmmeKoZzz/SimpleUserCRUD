@@ -1,5 +1,5 @@
 import { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from 'axios';
-import { refreshTokenOn } from '../utils';
+import { retryWithRefreshToken } from '../utils';
 
 export default (api: AxiosInstance) => {
 	function onReq(config: InternalAxiosRequestConfig) {
@@ -10,7 +10,7 @@ export default (api: AxiosInstance) => {
 	}
 
 	async function onResError(error: AxiosError) {
-		return (await refreshTokenOn([401, 400], error))
+		return (await retryWithRefreshToken([401, 400], error))
 			? Promise.resolve()
 			: Promise.reject(error);
 	}

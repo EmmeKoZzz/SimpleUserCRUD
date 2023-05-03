@@ -1,4 +1,4 @@
-import axios, {
+import {
 	AxiosError,
 	AxiosInstance,
 	AxiosResponse,
@@ -17,6 +17,6 @@ export default (api: AxiosInstance) => {
 	function Error(error: AxiosError) {
 		console.log(error);
 	}
-	axios.interceptors.response.use(Response, Error);
-	axios.interceptors.request.use(Request, Error);
+	api.interceptors.response.use(Response, Error);
+	api.interceptors.request.use(Request, Error);
 };

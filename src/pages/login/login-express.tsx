@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { InferType, object, string } from 'yup';
-import TextInput from '../../components/form-inputs/text-input';
+import { TextInput } from '../../components/form-inputs';
 import { UserContext } from '../../contexts';
 import { useAuth } from '../../hooks';
 import { InputTypes, TokenResponse } from '../../models';
