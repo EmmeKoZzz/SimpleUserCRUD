@@ -1,11 +1,5 @@
-import axios, {
-	AxiosError,
-	AxiosInstance,
-	AxiosResponse,
-	InternalAxiosRequestConfig,
-} from 'axios';
-import { deleteTask, postTask } from '../pages/todo-list/services';
-import { refreshUser } from '../services';
+import { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from 'axios';
+import { refreshTokenOn } from '../utils';
 
 export default (api: AxiosInstance) => {
 	function onReq(config: InternalAxiosRequestConfig) {
@@ -15,17 +9,10 @@ export default (api: AxiosInstance) => {
 		return newConfig;
 	}
 
-	async function onResError({ response, config }: AxiosError) {
-		if (response?.status === 401 && config) {
-			const { token: newToken } = await refreshUser(sessionStorage.token);
-			sessionStorage.setItem('token', newToken);
-			localStorage.setItem('token', newToken);
-
-			const newConfig = config;
-			newConfig.headers.Authorization = `Bearer ${sessionStorage.token}`;
-
-			axios(newConfig);
-		}
+	async function onResError(error: AxiosError) {
+		return (await refreshTokenOn([401, 400], error))
+			? Promise.resolve()
+			: Promise.reject(error);
 	}
 
 	api.interceptors.request.use(onReq, (err) => Promise.reject(err));

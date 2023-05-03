@@ -1,5 +1,5 @@
 import jwt from 'jwt-decode';
-import { tasksPrivateApi } from '../../../api';
+import { tasksApi } from '../../../api';
 
 export default async ({ task }: { task: string }) => {
 	const dataForm = new FormData();
@@ -8,6 +8,6 @@ export default async ({ task }: { task: string }) => {
 	dataForm.append('insert_by', tokenData.user_id);
 	dataForm.append('task', task);
 
-	const { data } = await tasksPrivateApi.post('/tasks/', dataForm);
+	const { data } = await tasksApi.post('/tasks/', dataForm);
 	return data;
 };

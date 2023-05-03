@@ -1,6 +1,6 @@
-import { tasksPrivateApi } from '../../../api';
+import { tasksApi } from '../../../api';
 
 export default async (id: string) => {
-	const { status } = await tasksPrivateApi.delete(`/tasks/${id}`);
+	const { status } = await tasksApi.delete(`/tasks/${id}`);
 	return status;
 };
