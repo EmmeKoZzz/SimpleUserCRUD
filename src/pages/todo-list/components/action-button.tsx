@@ -1,14 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useCallback, useContext, useMemo, useRef, useState } from 'react';
+import { useCallback, useContext, useMemo, useRef } from 'react';
 import { deleteIcon, editIcon } from '../../../assets';
 import { TasksContext } from '../context';
 import { deleteTask } from '../services';
 import EditModal from './edit-modal';
 
-export default function ActionButton({
-	data: { id: taskId, insert_by: userId, task },
-}: any) {
-	const showModal = useState(true);
+export default function ActionButton({ data: { id: taskId, task } }: any) {
 	const { setTasks } = useContext(TasksContext);
 	const editRef = useRef(document.createElement('button'));
 
@@ -46,12 +44,7 @@ export default function ActionButton({
 		<div className="w-full h-full flex justify-center">
 			<div className={container}>
 				<button className={`${buttons} ${edit}`} type="button" ref={editRef}>
-					<EditModal
-						handler={editRef.current}
-						oldTask={task}
-						userId={userId}
-						taskId={taskId}
-					/>
+					<EditModal handler={editRef.current} oldTask={task} taskId={taskId} />
 					{editIcon}
 				</button>
 				<button

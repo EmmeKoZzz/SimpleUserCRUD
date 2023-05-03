@@ -1,4 +1,4 @@
 export type INewTask = {
-	taskId: string;
-	newTask: string;
+	taskId: number;
+	task: string;
 };
